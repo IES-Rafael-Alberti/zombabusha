@@ -6364,6 +6364,25 @@ MonoBehaviour:
   - {fileID: 1593976137}
   - {fileID: 1649535021}
   - {fileID: 906936482}
+  - {fileID: 1282198234}
+  - {fileID: 1426800706}
+  actions:
+  - m_Name: Element 0
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 130b28f5-1d34-46c3-8f47-3308e5007580
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 16ff8198-b363-40cf-9c51-cd6e7cd50203
+      m_Path: <Keyboard>/#(0)
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Element 0
+      m_Flags: 0
+    m_Flags: 0
   cycleTime: 2
 --- !u!4 &759758808
 Transform:
@@ -6510,7 +6529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &766307649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6997,7 +7016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &816295625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11850,7 +11869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1325107709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13696,7 +13715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1470118989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16826,7 +16845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1686323573
 Transform:
   m_ObjectHideFlags: 0
