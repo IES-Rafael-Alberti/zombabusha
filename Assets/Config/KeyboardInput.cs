@@ -33,7 +33,7 @@ public partial class @KeyboardInput: IInputActionCollection2, IDisposable
                     ""id"": ""f471d039-87a4-4160-8b91-2f66519ceee1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {

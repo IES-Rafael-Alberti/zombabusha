@@ -4,17 +4,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraController : MonoBehaviour
+public class SonController : MonoBehaviour
 {
+    // controls
     [SerializeField] List<GameObject> cameras;
-    public List<InputAction> actions;
-    [SerializeField] float cycleTime;
-    
     private int _currentCamera;
-    private KeyboardInput _keyboardInput;
+    private KeyboardInput _keyboardInput;    
+    
+    // data
+    [SerializeField] private float MaxEnergy;
+    [SerializeField] private float MaxStress;
+    [SerializeField] private float StressThreshold;
+
+    private bool _danger;
+    private float _energy;
+    private float _stress;
+
+    private void Awake()
+    {
+        _energy = MaxEnergy;
+        _stress = .0f;
+        _danger = false;
+
+        
+    }
+
+    void ChangeEnergy(float value)
+    {
+        _energy += value;
+        Debug.Log(_energy);
+    }
 
     // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
+        EventManager.SonEventsList[SonEvents.fall] += () => { ChangeEnergy(-5); };
+        // input system init
         _keyboardInput = new KeyboardInput();
         _keyboardInput.Rooms.Enable();
         _keyboardInput.Rooms.Camera1.performed += 
@@ -37,12 +62,8 @@ public class CameraController : MonoBehaviour
             (InputAction.CallbackContext cb) => {
                 SetCamera(4); 
             }; 
-        actions[0].performed += (InputAction.CallbackContext cb) => {
-            SetCamera(0); 
-        };
         _currentCamera = 0;
         SetCamera(0);
-        //StartCoroutine(CycleCameras());
     }
 
     // Update is called once per frame
@@ -50,28 +71,21 @@ public class CameraController : MonoBehaviour
     {
         
     }
-
-    void NextCamera()
-    {
-        _currentCamera++;
-        _currentCamera%= cameras.Count;
-        SetCamera(_currentCamera);
-    }
-
+    
+    
     void SetCamera(int cameraNumber) {
-        _currentCamera = cameraNumber;
-        foreach (var camera in cameras) {
-            camera.SetActive(false);
-        }
-        cameras[_currentCamera].SetActive(true);
-    }
-
-    IEnumerator CycleCameras()
-    {
-        while (true)
+        if (cameraNumber != _currentCamera)
         {
-            NextCamera();
-            yield return new WaitForSeconds(cycleTime);
+            _currentCamera = cameraNumber;
+            foreach (var camera in cameras)
+            {
+                camera.SetActive(false);
+            }
+
+            cameras[_currentCamera].SetActive(true);
+            
+            // fall chance
+            if(EventManager.Next(100) < 20) EventManager.SonEventsList[SonEvents.fall].Invoke();
         }
     }
 }
