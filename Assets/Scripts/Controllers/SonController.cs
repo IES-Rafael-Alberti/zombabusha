@@ -8,7 +8,7 @@ public class SonController : MonoBehaviour
 {
     // controls
     [SerializeField] List<GameObject> cameras;
-    private int _currentCamera;
+    private int _currentCamera = -1;
     private KeyboardInput _keyboardInput;    
     
     // data
@@ -61,8 +61,7 @@ public class SonController : MonoBehaviour
         _keyboardInput.Rooms.Camera5.performed += 
             (InputAction.CallbackContext cb) => {
                 SetCamera(4); 
-            }; 
-        _currentCamera = 0;
+            };
         SetCamera(0);
     }
 
