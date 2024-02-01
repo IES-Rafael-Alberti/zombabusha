@@ -18,11 +18,12 @@ public class UIController : MonoBehaviour {
     {
         
     }
-
+    #region Son Events
     IEnumerator SonFall() {
         GameManager.Instance.cameratexture.enabled = true;
         fallSound.Play();
         yield return new WaitForSeconds(flashTime);
         GameManager.Instance.cameratexture.enabled = false;
     }
+    #endregion
 }
