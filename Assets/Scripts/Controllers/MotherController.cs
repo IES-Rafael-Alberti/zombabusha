@@ -8,8 +8,8 @@ public class MotherController : MonoBehaviour
     [SerializeField] private float MaxEnergy;
     [SerializeField] private float MaxRage;
     
-    private float _energy;
-    private float _rage;
+    private float _energy; //Rubus (Mother HP)
+    private float _rage; //Rubus (Related to area of search around Mother)
 
     private void Awake()
     {
