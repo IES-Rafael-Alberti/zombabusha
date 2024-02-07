@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public MotherController MotherC; //Rubus (Added MotherController)
     public GameObject Mother;
-    public SonController Son;
+    public SonController SonC; //Rubus (Added -C to name to make the naming convention alike the other controller)
     public RawImage cameratexture;
 
     private static GameManager _instance;
