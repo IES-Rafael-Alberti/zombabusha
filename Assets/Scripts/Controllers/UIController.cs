@@ -10,8 +10,13 @@ public class UIController : MonoBehaviour
     [SerializeField] private AudioSource fallSound;
     // Start is called before the first frame update
 
-    public Image fillImage; //Rubus (Image for the RageBar)
-    public static float fillAmount = 0f;
+    public Image fillImageM; //Rubus (Image for the RageBar)
+
+    public Image fillImageS; //David (added M/S to distinguish one fill from another)
+
+    public static float fillAmountM = 0f;
+
+    public static float fillAmountS = 1f;
 
     void Start()
     {
@@ -29,6 +34,7 @@ public class UIController : MonoBehaviour
     IEnumerator SonFall()
     {
         IncreaseRageFill(5f); //Rubus (Fills bar completely TODO fix)
+        DecreaseNerveFill(5f);
         GameManager.Instance.cameratexture.enabled = true;
         fallSound.Play();
         yield return new WaitForSeconds(flashTime);
@@ -37,8 +43,16 @@ public class UIController : MonoBehaviour
 
     public void IncreaseRageFill(float increaseAmount) //Rubus (Function for increasing Rage)
     {
-        fillAmount += increaseAmount / 100f;
-        fillAmount = Mathf.Max(fillAmount, 0);
-        fillImage.fillAmount = fillAmount;
+        fillAmountM += increaseAmount / 100f;
+        fillAmountM = Mathf.Max(fillAmountM, 0);
+        fillImageM.fillAmount = fillAmountM;
     }
+
+    public void DecreaseNerveFill(float decreaseAmount) //David (Tried to replicate Rage Function with Son Nerve Bar)
+    {
+        fillAmountS -= decreaseAmount / 100f;
+        fillAmountS = Mathf.Max(fillAmountS, 0);
+        fillImageS.fillAmount = fillAmountS;
+    }
+
 }
