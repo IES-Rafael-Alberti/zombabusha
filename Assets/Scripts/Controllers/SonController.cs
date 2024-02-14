@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 public class SonController : MonoBehaviour
 {
     // controls
-    [SerializeField] List<GameObject> cameras;
-    private int _currentCamera = -1;
+    [SerializeField] List<RoomData> rooms;
+    private int _currentRoom = -1;
     private KeyboardInput _keyboardInput;    
     
     // data
@@ -44,25 +44,25 @@ public class SonController : MonoBehaviour
         _keyboardInput.Rooms.Enable();
         _keyboardInput.Rooms.Camera1.performed += 
             (InputAction.CallbackContext cb) => {
-                SetCamera(0); 
+                GotoRoom(0); 
             }; 
         _keyboardInput.Rooms.Camera2.performed += 
             (InputAction.CallbackContext cb) => {
-                SetCamera(1); 
+                GotoRoom(1); 
             }; 
         _keyboardInput.Rooms.Camera3.performed += 
             (InputAction.CallbackContext cb) => {
-                SetCamera(2); 
+                GotoRoom(2); 
             }; 
         _keyboardInput.Rooms.Camera4.performed += 
             (InputAction.CallbackContext cb) => {
-                SetCamera(3); 
+                GotoRoom(3); 
             }; 
         _keyboardInput.Rooms.Camera5.performed += 
             (InputAction.CallbackContext cb) => {
-                SetCamera(4); 
+                GotoRoom(4); 
             };
-        SetCamera(0);
+        GotoRoom(0);
     }
 
     // Update is called once per frame
@@ -70,21 +70,38 @@ public class SonController : MonoBehaviour
     {
         
     }
-    
-    
-    void SetCamera(int cameraNumber) {
-        if (cameraNumber != _currentCamera)
-        {
-            _currentCamera = cameraNumber;
-            foreach (var camera in cameras)
-            {
-                camera.SetActive(false);
-            }
 
-            cameras[_currentCamera].SetActive(true);
-            
-            // fall chance
-            if(EventManager.Next(100) < 20) EventManager.SonEventsList[SonEvents.fall].Invoke();
+
+    void GotoRoom(int roomNumber)
+    {
+        if (roomNumber != _currentRoom)
+        {
+            foreach (var room in rooms)
+            {
+                room.roomCamera.SetActive(false);
+                room.hideCamera.SetActive(false);
+            }
+            // fall chance (not in initial room)
+            if(_currentRoom != -1)
+                if(EventManager.Next(100) < 20) EventManager.SonEventsList[SonEvents.fall].Invoke();
+            _currentRoom = roomNumber;
+            rooms[_currentRoom].roomCamera.SetActive(true);
         }
     }
+    
+    // void SetCamera(int cameraNumber) {
+    //     if (cameraNumber != _currentCamera)
+    //     {
+    //         _currentCamera = cameraNumber;
+    //         foreach (var camera in cameras)
+    //         {
+    //             camera.SetActive(false);
+    //         }
+    //
+    //         cameras[_currentCamera].SetActive(true);
+    //         
+    //         // fall chance
+    //         if(EventManager.Next(100) < 20) EventManager.SonEventsList[SonEvents.fall].Invoke();
+    //     }
+    // }
 }
