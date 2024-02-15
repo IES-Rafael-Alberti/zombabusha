@@ -25,8 +25,7 @@ public class SonController : MonoBehaviour
         _energy = MaxEnergy;
         _stress = .0f;
         _danger = false;
-
-        
+        _currentRoom = -1;
     }
 
     void ChangeEnergy(float value)
@@ -38,6 +37,7 @@ public class SonController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GotoRoom(0);
         EventManager.SonEventsList[SonEvents.fall] += () => { ChangeEnergy(-5); };
         // input system init
         _keyboardInput = new KeyboardInput();
@@ -62,7 +62,6 @@ public class SonController : MonoBehaviour
             (InputAction.CallbackContext cb) => {
                 GotoRoom(4); 
             };
-        GotoRoom(0);
     }
 
     // Update is called once per frame
