@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject Mother;
     public SonController SonC; //Rubus (Added -C to name to make the naming convention alike the other controller)
     public RawImage cameratexture;
+    public GameObject actionsUI;
 
     private static GameManager _instance;
     public static GameManager Instance => _instance;

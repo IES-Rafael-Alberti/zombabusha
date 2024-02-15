@@ -71,7 +71,7 @@ public class SonController : MonoBehaviour
     }
 
 
-    void GotoRoom(int roomNumber)
+    public void GotoRoom(int roomNumber)
     {
         if (roomNumber != _currentRoom)
         {
@@ -85,8 +85,26 @@ public class SonController : MonoBehaviour
                 if(EventManager.Next(100) < 20) EventManager.SonEventsList[SonEvents.fall].Invoke();
             _currentRoom = roomNumber;
             rooms[_currentRoom].roomCamera.SetActive(true);
+            GameManager.Instance.actionsUI.SetActive(true);
         }
     }
+
+    public void Hide()
+    {
+        rooms[_currentRoom].roomCamera.SetActive(false);
+        rooms[_currentRoom].hideCamera.SetActive(true);
+        GameManager.Instance.actionsUI.SetActive(false);
+    }    
+    
+    public void Trap()
+    {
+        rooms[_currentRoom].trap.SetActive(true);
+    } 
+    
+    public void Prank()
+    {
+        rooms[_currentRoom].prank.SetActive(true);
+    } 
     
     // void SetCamera(int cameraNumber) {
     //     if (cameraNumber != _currentCamera)
