@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SonController : MonoBehaviour
+public class SonController : NavController
 {
     // controls
     [SerializeField] List<RoomData> rooms;
     private int _currentRoom = -1;
-    private KeyboardInput _keyboardInput;    
+    private KeyboardInput _keyboardInput;
+    private bool _hiding;
+    private Camera myCamera;
     
     // data
     [SerializeField] private float MaxEnergy;
@@ -26,6 +28,7 @@ public class SonController : MonoBehaviour
         _stress = .0f;
         _danger = false;
         _currentRoom = -1;
+        myCamera = GetComponentInChildren<Camera>();
     }
 
     void ChangeEnergy(float value)
@@ -67,14 +70,18 @@ public class SonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!_walking) {
+            myCamera.enabled = false;
+            rooms[_currentRoom].roomCamera.SetActive(!_hiding);
+            rooms[_currentRoom].hideCamera.SetActive(_hiding);
+        }
     }
 
 
     public void GotoRoom(int roomNumber)
     {
-        if (roomNumber != _currentRoom)
-        {
+        if (!_walking && roomNumber != _currentRoom) {
+            _hiding = false;
             foreach (var room in rooms)
             {
                 room.roomCamera.SetActive(false);
@@ -92,16 +99,22 @@ public class SonController : MonoBehaviour
 
     void GoTo(GameObject place)
     {
-        transform.position = place.transform.position;
-        transform.rotation = place.transform.rotation;
+        // transform.position = place.transform.position;
+        // transform.rotation = place.transform.rotation;
+        
+        if (!_walking) {
+            myCamera.enabled = true;
+            StartCoroutine(walkTo(place.transform));
+        }
     }
     
     public void Hide()
     {
         // rooms[_currentRoom].roomCamera.SetActive(false);
         // rooms[_currentRoom].hideCamera.SetActive(true);
-        GoTo(rooms[_currentRoom].hideCamera);
         GameManager.Instance.actionsUI.SetActive(false);
+        _hiding = true;
+        GoTo(rooms[_currentRoom].hideCamera);
     }    
     
     public void Trap()
