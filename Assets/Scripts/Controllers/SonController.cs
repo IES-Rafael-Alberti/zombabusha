@@ -84,15 +84,23 @@ public class SonController : MonoBehaviour
             if(_currentRoom != -1)
                 if(EventManager.Next(100) < 20) EventManager.SonEventsList[SonEvents.fall].Invoke();
             _currentRoom = roomNumber;
-            rooms[_currentRoom].roomCamera.SetActive(true);
+            GoTo(rooms[_currentRoom].roomCamera);
+            //rooms[_currentRoom].roomCamera.SetActive(true);
             GameManager.Instance.actionsUI.SetActive(true);
         }
     }
 
+    void GoTo(GameObject place)
+    {
+        transform.position = place.transform.position;
+        transform.rotation = place.transform.rotation;
+    }
+    
     public void Hide()
     {
-        rooms[_currentRoom].roomCamera.SetActive(false);
-        rooms[_currentRoom].hideCamera.SetActive(true);
+        // rooms[_currentRoom].roomCamera.SetActive(false);
+        // rooms[_currentRoom].hideCamera.SetActive(true);
+        GoTo(rooms[_currentRoom].hideCamera);
         GameManager.Instance.actionsUI.SetActive(false);
     }    
     
