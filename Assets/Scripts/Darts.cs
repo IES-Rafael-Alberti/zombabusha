@@ -25,7 +25,7 @@ public class Darts : MonoBehaviour
             //Debug.Log("Estás pulsando click izquierdo!");
             //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            GameObject bullet = Instantiate(dart, transform.position + Vector3.up * bulletOffset, Quaternion.identity);
+            GameObject bullet = Instantiate(dart);
             Vector2 directedBulletForce = new Vector2(bulletForce.x, bulletForce.y);
             bullet.AddComponent<Rigidbody>();
             //bullet.GetComponent<Rigidbody>().mass = 3;
