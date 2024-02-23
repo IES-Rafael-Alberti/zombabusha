@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4506263, g: 0.50059575, b: 0.5749897, a: 1}
+  m_IndirectSpecularColor: {r: 0.45062673, g: 0.5005966, b: 0.57499033, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -522,6 +522,18 @@ PrefabInstance:
     - target: {fileID: 23256674945052962, guid: d31d5e07362494e468582cf3e3d08eaf, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455038370801326220, guid: d31d5e07362494e468582cf3e3d08eaf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.048
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455038370801326220, guid: d31d5e07362494e468582cf3e3d08eaf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.102
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455038370801326220, guid: d31d5e07362494e468582cf3e3d08eaf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.024
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3445,7 +3457,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -414.99997, y: -157}
+  m_AnchoredPosition: {x: -415, y: -157}
   m_SizeDelta: {x: -850, y: -339}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &325523367
@@ -10597,7 +10609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1535923529944410, guid: e1dc4b3712aedd241acd811174eb3831, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4620813470260574, guid: e1dc4b3712aedd241acd811174eb3831, type: 3}
       propertyPath: m_LocalScale.x
@@ -10613,15 +10625,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4620813470260574, guid: e1dc4b3712aedd241acd811174eb3831, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 455
+      value: 582
       objectReference: {fileID: 0}
     - target: {fileID: 4620813470260574, guid: e1dc4b3712aedd241acd811174eb3831, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 186.45877
+      value: 325.6
       objectReference: {fileID: 0}
     - target: {fileID: 4620813470260574, guid: e1dc4b3712aedd241acd811174eb3831, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -88.93819
+      value: -444
       objectReference: {fileID: 0}
     - target: {fileID: 4620813470260574, guid: e1dc4b3712aedd241acd811174eb3831, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10727,6 +10739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 905741433}
+  - component: {fileID: 905741434}
   m_Layer: 5
   m_Name: Darts
   m_TagString: Untagged
@@ -10752,6 +10765,22 @@ Transform:
   - {fileID: 2065573847}
   m_Father: {fileID: 691512743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &905741434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905741432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 308d1f9fc50a5ee47b433ee939ac0fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dart: {fileID: 1535923529944410, guid: debe4519c90a32c4eb54eac84cdd6921, type: 3}
+  bullseye: {fileID: 1281822691}
+  bulletOffset: -8
+  bulletForce: {x: 0, y: 5, z: 40}
 --- !u!1 &906936482
 GameObject:
   m_ObjectHideFlags: 0
@@ -15600,6 +15629,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 697132384}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1281822691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1142770143751240, guid: d31d5e07362494e468582cf3e3d08eaf, type: 3}
+  m_PrefabInstance: {fileID: 24724193}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1282198234
 GameObject:
   m_ObjectHideFlags: 0
@@ -26367,7 +26401,6 @@ GameObject:
   - component: {fileID: 2069424306}
   - component: {fileID: 2069424308}
   - component: {fileID: 2069424307}
-  - component: {fileID: 2069424310}
   m_Layer: 0
   m_Name: UI Camera
   m_TagString: Untagged
@@ -26497,22 +26530,6 @@ RectTransform:
   m_AnchoredPosition: {x: 14309.402, y: 5323.0195}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2069424310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069424305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 308d1f9fc50a5ee47b433ee939ac0fc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dart: {fileID: 1535923529944410, guid: e1dc4b3712aedd241acd811174eb3831, type: 3}
-  speed: 1.49
-  bulletOffset: 10.06
-  bulletForce: {x: 1.59, y: 1.33}
 --- !u!4 &2074707436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 449206, guid: 7d385dfbe4e6215468502b50a3a4655f, type: 3}

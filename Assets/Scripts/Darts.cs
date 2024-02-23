@@ -6,9 +6,9 @@ public class Darts : MonoBehaviour
 {
 
     public GameObject dart;
-    public float speed;
+    public GameObject bullseye;
     [SerializeField] private float bulletOffset;
-    [SerializeField] private Vector2 bulletForce;
+    [SerializeField] private Vector3 bulletForce;
 
     // Start is called before the first frame update
     void Start()
@@ -25,18 +25,14 @@ public class Darts : MonoBehaviour
             //Debug.Log("Estás pulsando click izquierdo!");
             //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            GameObject bullet = Instantiate(dart);
-            Vector2 directedBulletForce = new Vector2(bulletForce.x, bulletForce.y);
-            bullet.AddComponent<Rigidbody>();
-            //bullet.GetComponent<Rigidbody>().mass = 3;
-            bullet.GetComponent<Rigidbody>().AddForce(directedBulletForce, ForceMode.Impulse);
+            GameObject bullet = Instantiate(dart, gameObject.transform);
+            bullet.transform.position = new Vector3(bullseye.transform.position.x, bullseye.transform.position.y, bullseye.transform.position.z + bulletOffset);
+            bullet.transform.localScale = Vector3.one * 250;
+            bullet.GetComponent<Rigidbody>().AddForce(bulletForce, ForceMode.Impulse);
 
-            /*bullet.AddComponent<Rigidbody>();
-            bullet.GetComponent<Rigidbody>().mass = 3;
-            bullet.GetComponent<Rigidbody>().AddForce(ray.direction * speed);
-            bullet.AddComponent<BoxCollider>();*/
+    
 
-            //Destroy(bullet, 3f);
+            Destroy(bullet, 3f);
         }
 
     }
