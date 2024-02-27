@@ -12,10 +12,12 @@ GameObject:
   - component: {fileID: 33306221387994504}
   - component: {fileID: 23483663176643914}
   - component: {fileID: 5324600059724398757}
-  - component: {fileID: 6898699852147785566}
+  - component: {fileID: 1779297665631334496}
+  - component: {fileID: -5714810435112421603}
+  - component: {fileID: 513615112997673411}
   m_Layer: 5
   m_Name: SM_Prop_Dart_01
-  m_TagString: Untagged
+  m_TagString: dart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,8 +114,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &6898699852147785566
-CapsuleCollider:
+--- !u!114 &1779297665631334496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535923529944410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c6dd69321b1e942a4765616d29472a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &-5714810435112421603
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -130,8 +144,18 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.03694022
-  m_Height: 0.3349109
-  m_Direction: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0738804, y: 0.3349109, z: 0.07388044}
   m_Center: {x: 0, y: 0.06980254, z: 0.00000001664222}
+--- !u!114 &513615112997673411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535923529944410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01fd9d6021f76c748a922c6112878795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
