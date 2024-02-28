@@ -10816,6 +10816,7 @@ MonoBehaviour:
   bullseye: {fileID: 1281822691}
   bulletOffset: -8
   bulletForce: {x: 0, y: 5, z: 40}
+  camera: {fileID: 2069424306}
 --- !u!1 &906936482
 GameObject:
   m_ObjectHideFlags: 0
@@ -15724,7 +15725,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
