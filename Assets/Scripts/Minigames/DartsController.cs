@@ -11,24 +11,27 @@ public class DartsController : MonoBehaviour
     [SerializeField] private float bulletOffset;
     [SerializeField] private Vector3 bulletForce;
     [SerializeField] private Camera camera;
+    [SerializeField] int maxAmmo;
+    private int currentAmmo;
 
     // Start is called before the first frame update
     void Start()
     {
         //camera = Camera.main;
+        currentAmmo = maxAmmo;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        /* [2D Method test] 
-        Vector2 mouseWorldPoint = camera.ScreenToWorldPoint(Input.mousePosition);
+        // 2D Aim Method test
+        /*Vector2 mouseWorldPoint = camera.ScreenToWorldPoint(Input.mousePosition);
         Debug.Log(mouseWorldPoint);*/
 
 
-        /* [3D Method test] 
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        // 3D Aim Method test
+        /*Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit)) {
             Debug.Log(raycastHit.point);
         }*/
@@ -38,7 +41,6 @@ public class DartsController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Shot();
-            
         }
 
     }
@@ -46,20 +48,29 @@ public class DartsController : MonoBehaviour
     private void Shot()
     {
 
-        GameObject bullet = Instantiate(dart, gameObject.transform);
-        bullet.transform.position = new Vector3(bullseye.transform.position.x, bullseye.transform.position.y, bullseye.transform.position.z + bulletOffset);
-        bullet.transform.localScale = Vector3.one * 250;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit))
+        if (currentAmmo >= 1)
         {
-            bullet.transform.position = raycastHit.point;
+            GameObject bullet = Instantiate(dart, gameObject.transform);
+            bullet.transform.position = new Vector3(bullseye.transform.position.x, bullseye.transform.position.y, bullseye.transform.position.z + bulletOffset);
+            bullet.transform.localScale = Vector3.one * 250;
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit raycastHit))
+            {
+                bullet.transform.position = raycastHit.point;
+            }
+
+
+            bullet.GetComponent<Rigidbody>().AddForce(bulletForce, ForceMode.Impulse);
+
+            currentAmmo--;
+
+            //Destroy(bullet, 3f);
         }
-
-
-        bullet.GetComponent<Rigidbody>().AddForce(bulletForce, ForceMode.Impulse);
-
-
-        Destroy(bullet, 3f);
+        else 
+        {
+            Debug.Log("Out of ammo");
+        }
+        
     }
 
 

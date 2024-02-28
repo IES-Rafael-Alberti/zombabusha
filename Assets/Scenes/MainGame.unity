@@ -10817,6 +10817,7 @@ MonoBehaviour:
   bulletOffset: -8
   bulletForce: {x: 0, y: 5, z: 40}
   camera: {fileID: 2069424306}
+  maxAmmo: 3
 --- !u!1 &906936482
 GameObject:
   m_ObjectHideFlags: 0
