@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +8,8 @@ public class NavController: MonoBehaviour {
     [SerializeField] protected NavMeshAgent navAgent;
     
     protected bool _walking;
+
+    public Action endWalking = new Action(() => { });
 
     public IEnumerator walkTo(Transform destination) {
   
@@ -17,6 +20,7 @@ public class NavController: MonoBehaviour {
 
         yield return new WaitUntil(() => ReachedDestinationOrGaveUp());
         _walking = false;
+        endWalking.Invoke();
     }
     
     public bool ReachedDestinationOrGaveUp() {

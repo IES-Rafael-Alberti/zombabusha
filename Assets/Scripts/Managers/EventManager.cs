@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public static class EventManager
+public static class  EventManager
 {
     public static Dictionary<MotherEvents, Action> MotherEventsList = new Dictionary<MotherEvents, Action>();
     public static Dictionary<SonEvents, Action> SonEventsList = new Dictionary<SonEvents, Action>();
@@ -47,5 +47,6 @@ public enum SonEvents
     hideTimeout,
     fall,
     prank,
-    trap
+    trap,
+    cameraTransition
 }

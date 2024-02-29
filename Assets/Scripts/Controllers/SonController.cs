@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class SonController : NavController
 {
@@ -21,7 +22,7 @@ public class SonController : NavController
     private bool _danger;
     private float _energy;
     private float _stress;
-
+    
     private void Awake()
     {
         _energy = MaxEnergy;
@@ -29,6 +30,7 @@ public class SonController : NavController
         _danger = false;
         _currentRoom = -1;
         myCamera = GetComponentInChildren<Camera>();
+        endWalking += Transition;
     }
 
     void ChangeEnergy(float value)
@@ -70,11 +72,21 @@ public class SonController : NavController
     // Update is called once per frame
     void Update()
     {
-        if (!_walking) {
-            myCamera.enabled = false;
-            rooms[_currentRoom].roomCamera.SetActive(!_hiding);
-            rooms[_currentRoom].hideCamera.SetActive(_hiding);
-        }
+
+    }
+
+    void Transition()
+    {
+        myCamera.enabled = false;
+        EventManager.SonEventsList[SonEvents.cameraTransition].Invoke();
+        StartCoroutine(ChangeCamera());
+    }
+
+    IEnumerator ChangeCamera()
+    {
+        yield return new WaitForSeconds(3.0f);
+        rooms[_currentRoom].roomCamera.SetActive(!_hiding);
+        rooms[_currentRoom].hideCamera.SetActive(_hiding);
     }
 
 
