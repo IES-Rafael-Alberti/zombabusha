@@ -21,10 +21,12 @@ public class BulletController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
 
     {
-
-        Debug.Log("Collision");
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeAll;
+        if (collision.gameObject.tag =="red" || collision.gameObject.tag == "black" || collision.gameObject.tag == "bullseye")
+        {
+            Debug.Log("Collision");
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
 
     }
 }

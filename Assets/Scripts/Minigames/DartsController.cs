@@ -12,6 +12,8 @@ public class DartsController : MonoBehaviour
     [SerializeField] private Vector3 bulletForce;
     [SerializeField] private Camera camera;
     [SerializeField] int maxAmmo;
+
+    [SerializeField] Quaternion bulletRotation;
     private int currentAmmo;
 
     // Start is called before the first frame update
@@ -28,8 +30,6 @@ public class DartsController : MonoBehaviour
     {
 
         // 2D Aim Method test
-        /*Vector2 mouseWorldPoint = camera.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log(mouseWorldPoint);*/
 
 
         // 3D Aim Method test
@@ -42,7 +42,19 @@ public class DartsController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            Shot();
+            Vector2 center = new Vector2(camera.scaledPixelWidth/2, camera.scaledPixelHeight/2);
+            Vector2 shotPosition = (Vector2) Input.mousePosition - center;
+            shotPosition = shotPosition * 3.0f / 220f; 
+
+            Vector3 releasePosition = camera.transform.position;
+            releasePosition.z += bulletOffset;
+            releasePosition.x += shotPosition.x;
+            releasePosition.y += shotPosition.y;
+
+            GameObject bullet = Instantiate(dart, releasePosition, bulletRotation);
+            //bullet.transform.localScale = Vector3.one * 10;
+            bullet.GetComponent<Rigidbody>().AddForce(bulletForce, ForceMode.Impulse);
+            //Shot();
         }
 
     }
