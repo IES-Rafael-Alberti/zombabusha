@@ -4610,7 +4610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -414.99994, y: -157}
+  m_AnchoredPosition: {x: -415.00006, y: -157}
   m_SizeDelta: {x: -850, y: -339}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &325523367
@@ -12801,10 +12801,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dart: {fileID: 1535923529944410, guid: debe4519c90a32c4eb54eac84cdd6921, type: 3}
   bullseye: {fileID: 1142770152713897}
-  bulletOffset: -8
-  bulletForce: {x: 0, y: 5, z: 40}
+  bulletOffset: 1
+  bulletForce: {x: 0, y: 5, z: 120}
   camera: {fileID: 2069424306}
   maxAmmo: 3
+  bulletRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
 --- !u!114 &905741435
 MonoBehaviour:
   m_ObjectHideFlags: 0
