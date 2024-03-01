@@ -6,7 +6,9 @@ using UnityEngine.AI;
 public class NavController: MonoBehaviour {
     
     [SerializeField] protected NavMeshAgent navAgent;
-    
+    [SerializeField] protected float rotSpeed = 1.0f;
+    [SerializeField] protected float rotMaxOffset = 5.0f;
+
     protected bool _walking;
 
     public Action<bool> endWalking = new Action<bool>((bool value) => { });
@@ -20,8 +22,8 @@ public class NavController: MonoBehaviour {
 
         yield return new WaitUntil(() => ReachedDestinationOrGaveUp());
 
-        while (withRotation && Mathf.Abs(transform.rotation.eulerAngles.y - destination.rotation.eulerAngles.y) > 5f) {
-             transform.rotation = Quaternion.Slerp(transform.rotation, destination.rotation, 1.0f * Time.deltaTime);
+        while (withRotation && Mathf.Abs(transform.rotation.eulerAngles.y - destination.rotation.eulerAngles.y) > rotMaxOffset) {
+             transform.rotation = Quaternion.Slerp(transform.rotation, destination.rotation, rotSpeed * Time.deltaTime);
              yield return true;
         }
 

@@ -82,6 +82,7 @@ public class SonController : NavController
             GameManager.Instance.actionsUI.SetActive(true);
         else
             EventManager.SonEventsList[SonEvents.cameraTransition].Invoke();
+        GameManager.Instance.roomsUI.SetActive(true);
     }
 
     void ChangeCamera()
@@ -100,6 +101,7 @@ public class SonController : NavController
     {
         if (!_walking && roomNumber != _currentRoom) {
             GameManager.Instance.actionsUI.SetActive(false);
+            GameManager.Instance.roomsUI.SetActive(false);
             _hiding = false;
             foreach (var room in rooms)
             {
@@ -132,6 +134,7 @@ public class SonController : NavController
         // rooms[_currentRoom].roomCamera.SetActive(false);
         // rooms[_currentRoom].hideCamera.SetActive(true);
         GameManager.Instance.actionsUI.SetActive(false);
+        GameManager.Instance.roomsUI.SetActive(false);
         _hiding = true;
         GoTo(rooms[_currentRoom].hideCamera);
     }    
