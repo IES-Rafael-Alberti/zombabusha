@@ -9,9 +9,9 @@ public class NavController: MonoBehaviour {
     
     protected bool _walking;
 
-    public Action endWalking = new Action(() => { });
+    public Action<bool> endWalking = new Action<bool>((bool value) => { });
 
-    public IEnumerator walkTo(Transform destination) {
+    public IEnumerator walkTo(Transform destination, bool withRotation = true) {
   
         if (_walking) { yield break; }
 
@@ -19,8 +19,14 @@ public class NavController: MonoBehaviour {
         navAgent.destination = destination.position;
 
         yield return new WaitUntil(() => ReachedDestinationOrGaveUp());
+
+        while (withRotation && Mathf.Abs(transform.rotation.eulerAngles.y - destination.rotation.eulerAngles.y) > 5f) {
+             transform.rotation = Quaternion.Slerp(transform.rotation, destination.rotation, 1.0f * Time.deltaTime);
+             yield return true;
+        }
+
         _walking = false;
-        endWalking.Invoke();
+        endWalking.Invoke(withRotation);
     }
     
     public bool ReachedDestinationOrGaveUp() {

@@ -44,6 +44,7 @@ public class SonController : NavController
     {
         GotoRoom(0);
         EventManager.SonEventsList[SonEvents.fall] += () => { ChangeEnergy(-5); };
+        EventManager.SonEventsList[SonEvents.cameraChange] += ChangeCamera;
         // input system init
         _keyboardInput = new KeyboardInput();
         _keyboardInput.Rooms.Enable();
@@ -75,17 +76,22 @@ public class SonController : NavController
 
     }
 
-    void Transition()
+    void Transition(bool withRotation)
     {
-        myCamera.enabled = false;
-        EventManager.SonEventsList[SonEvents.cameraTransition].Invoke();
-        StartCoroutine(ChangeCamera());
+        if(withRotation)
+            GameManager.Instance.actionsUI.SetActive(true);
+        else
+            EventManager.SonEventsList[SonEvents.cameraTransition].Invoke();
     }
 
-    IEnumerator ChangeCamera()
+    void ChangeCamera()
     {
-        yield return new WaitForSeconds(3.0f);
-        rooms[_currentRoom].roomCamera.SetActive(!_hiding);
+        myCamera.enabled = !_hiding;
+        transform.rotation = _hiding
+            ? rooms[_currentRoom].hideCamera.transform.rotation
+            : rooms[_currentRoom].roomCamera.transform.rotation;
+        //rooms[_currentRoom].roomCamera.SetActive(!_hiding);
+        
         rooms[_currentRoom].hideCamera.SetActive(_hiding);
     }
 
@@ -93,6 +99,7 @@ public class SonController : NavController
     public void GotoRoom(int roomNumber)
     {
         if (!_walking && roomNumber != _currentRoom) {
+            GameManager.Instance.actionsUI.SetActive(false);
             _hiding = false;
             foreach (var room in rooms)
             {
@@ -105,7 +112,7 @@ public class SonController : NavController
             _currentRoom = roomNumber;
             GoTo(rooms[_currentRoom].roomCamera);
             //rooms[_currentRoom].roomCamera.SetActive(true);
-            GameManager.Instance.actionsUI.SetActive(true);
+            //GameManager.Instance.actionsUI.SetActive(true);
         }
     }
 
@@ -116,7 +123,7 @@ public class SonController : NavController
         
         if (!_walking) {
             myCamera.enabled = true;
-            StartCoroutine(walkTo(place.transform));
+            StartCoroutine(walkTo(place.transform, !_hiding));
         }
     }
     

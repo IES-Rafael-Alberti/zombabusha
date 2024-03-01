@@ -16,6 +16,10 @@ public class UIController : MonoBehaviour
     [SerializeField] private float _scaleStep = 5f;
     [SerializeField] private float _rotateStep = -180f;
     [SerializeField] private float _scaleInit = 1.0f;
+    [SerializeField] private AnimationCurve curve = 
+        new AnimationCurve(new Keyframe(0, 1),
+                            new Keyframe(0.5f, 0.5f, -1.5f, -1.5f), 
+                            new Keyframe(1, 0));
 
     // Start is called before the first frame update
 
@@ -43,29 +47,43 @@ public class UIController : MonoBehaviour
     {
         float alpha = 0f;
 
-        // Color fadeColor = _fade.color;
-        // fadeColor.a = alpha;
-        // _fade.color = fadeColor;
-        //
-        // _fade.enabled = true;
-        // while (alpha <= 255.0f)
-        // {
-        //     alpha += _fadeSpeed * Time.deltaTime;
-        //     fadeColor.a = alpha;
-        //     _fade.color = fadeColor;
-        //     yield return true;
-        // }
-        // _fade.enabled = false;
+        Color fadeColor = _fade.color;
+        fadeColor.a = alpha;
+        _fade.color = fadeColor;
+        
+        _fade.enabled = true;
+        while (alpha <= 1.0f)
+        {
+            alpha += _fadeSpeed * Time.deltaTime;
+            fadeColor.a = alpha;
+            _fade.color = fadeColor;
+            yield return true;
+        }
+        EventManager.SonEventsList[SonEvents.cameraChange].Invoke();
+        _fade.enabled = false;
         
         _babusha.SetActive(true);
-        float scale = _scaleInit;
+        Image babushaImage = _babusha.GetComponent<Image>();
+        fadeColor = babushaImage.color;
+        fadeColor.a = 1.0f;
+        babushaImage.color = fadeColor;
+        float scale = 0f;
         while (scale < _scaleEnd)
         {
             scale += _scaleStep * Time.deltaTime;
-            _babusha.transform.localScale = Vector3.one * scale;
-            _babusha.transform.Rotate(Vector3.forward, _rotateStep * Time.deltaTime);
+            _babusha.transform.localScale = Vector3.one * (_scaleInit + curve.Evaluate(scale));
+            //_babusha.transform.Rotate(Vector3.forward, _rotateStep * Time.deltaTime);
             yield return true;
         }
+
+        while (alpha > 0f)
+        {
+            alpha -= _fadeSpeed * Time.deltaTime;
+            fadeColor.a = alpha;
+            babushaImage.color = fadeColor;
+            yield return true;
+        }
+        
         _babusha.SetActive(false);
     }
     

@@ -48,5 +48,6 @@ public enum SonEvents
     fall,
     prank,
     trap,
-    cameraTransition
+    cameraTransition,
+    cameraChange
 }
