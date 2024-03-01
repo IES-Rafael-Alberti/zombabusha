@@ -19,6 +19,8 @@ public class DartsController : MonoBehaviour
     {
         //camera = Camera.main;
         currentAmmo = maxAmmo;
+
+        HideUI(); 
     }
 
     // Update is called once per frame
@@ -53,14 +55,16 @@ public class DartsController : MonoBehaviour
             GameObject bullet = Instantiate(dart, gameObject.transform);
             bullet.transform.position = new Vector3(bullseye.transform.position.x, bullseye.transform.position.y, bullseye.transform.position.z + bulletOffset);
             bullet.transform.localScale = Vector3.one * 250;
+            
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            
             if (Physics.Raycast(ray, out RaycastHit raycastHit))
             {
                 bullet.transform.position = raycastHit.point;
             }
-
-
             bullet.GetComponent<Rigidbody>().AddForce(bulletForce, ForceMode.Impulse);
+
+
 
             currentAmmo--;
 
@@ -73,5 +77,14 @@ public class DartsController : MonoBehaviour
         
     }
 
+    private void HideUI()
+
+    {
+        GameObject[] UIElist = GameObject.FindGameObjectsWithTag("UIelements");
+        foreach (GameObject obj in UIElist) 
+        { 
+            obj.SetActive(false);
+        }
+    }
 
 }

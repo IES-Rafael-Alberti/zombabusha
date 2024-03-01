@@ -16,23 +16,23 @@ public class PointsController : MonoBehaviour
         
     }
 
-     private void OnCollisionEnter(Collision collision)
+     private void OnCollisionEnter(Collision slice)
 
     {
 
-        if (collision.gameObject.tag == "red")
+        if (slice.gameObject.tag == "red")
 
         {
             Debug.Log("5 points");
         }
 
-        else if (collision.gameObject.tag == "black")
+        else if (slice.gameObject.tag == "black")
 
         {
             Debug.Log("1 point");
         }
 
-        else if (collision.gameObject.tag == "bullseye")
+        else if (slice.gameObject.tag == "bullseye")
 
         {
             Debug.Log("10 points");
