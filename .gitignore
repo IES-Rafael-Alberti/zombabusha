@@ -70,3 +70,9 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+demo-api-hugging-face/Assets/StreamingAssets/AudioDecoder_Tiny.sentis
+demo-api-hugging-face/Assets/StreamingAssets/AudioEncoder_Tiny.sentis
+demo-api-hugging-face/Assets/StreamingAssets/LogMelSepctro.sentis
+demo-api-hugging-face/Library/Artifacts/21/214a28d472b1da2877609666d41dc7e1
+demo-api-hugging-face/Library/PackageCache/com.unity.burst@1.8.9/.Runtime/libburst-llvm-15.dylib
+demo-api-hugging-face/Temp/*
