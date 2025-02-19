@@ -9,7 +9,7 @@
                     "name": "Camera1",
                     "type": "Button",
                     "id": "f471d039-87a4-4160-8b91-2f66519ceee1",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
